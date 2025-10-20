@@ -13,7 +13,7 @@ document.addEventListener('keydown', (event) => {
     
     if(/^[a-z]$/i.test(event.key) && posicaoAtual < letras.length) {
         letras[posicaoAtual].textContent = tecla.toUpperCase()
-        posicaoAtual ++
+        posicaoAtual++
         
     }// ! só aparece no visor letras e não aparece numeros
     

@@ -10,12 +10,18 @@ body{
 }
 
 header > nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Mitr', sans-serif;
+    font-weight: 600;
+    font-size: 250%;
     position: fixed;
     top: 0;
     left: 0;
     height: 100px;
-    border: solid 1px black;
-    background-color: black;
+    background-color: rgba(54, 1, 1, 0.897);
     width: 100%;
 }
 .container {
@@ -35,6 +41,9 @@ header > nav{
 /*#502834*/
 
 .letter{
+    font-family: 'Mitr', sans-serif;
+    font-weight: 600;
+    font-size: 0.65em;
     width: 61px;
     height: 61px;
     background-color: transparent;
