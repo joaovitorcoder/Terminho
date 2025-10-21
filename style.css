@@ -16,12 +16,12 @@ header > nav{
     color: white;
     font-family: 'Mitr', sans-serif;
     font-weight: 600;
-    font-size: 250%;
+    font-size: 200%;
     position: fixed;
     top: 0;
     left: 0;
     height: 100px;
-    background-color: rgba(54, 1, 1, 0.897);
+   
     width: 100%;
 }
 .container {

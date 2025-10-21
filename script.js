@@ -1,52 +1,51 @@
-let data = new Date()
-let hora = data.getHours
-let minutos = data.getMinutes
+import { Modulopalavras } from './palavra/Modulopalavra.js' // importa o modulo da lista de palavras
 
-if (hora >= 0){
-
-}
- 
 let posicaoAtual = 0
 let linhaAtual = 0
 const linhas = document.querySelectorAll('.linha')
-const letras = linhas[linhaAtual].querySelectorAll('.letter') 
 
+function getLetrasAtuais(){
+    return linhas[linhaAtual].querySelectorAll('.letter')
+}
 
 //funcao que apaga as letras
 function deleteLetras(){
+    const letras = getLetrasAtuais()
     if(posicaoAtual > 0){
         posicaoAtual--
         letras[posicaoAtual].textContent = ''
     }
 }
 
+let palavradoJogador = ''
 
 //funcao que pega as letras
 function capturarLetras(){
-    //let j = 10
-    //if(j >= 10){
-        if(posicaoAtual < 5){
-            //verifica se tem 5 letras, senao manda um alert
-            alert('Tem que conter 5 letras')
-            for(let i = posicaoAtual; i > -1; i--){
-                letras[i].textContent = ''
-                posicaoAtual = 0
-            }
-        }else{
-            let palavra = '';
-            letras.forEach(caixinha => {
-                palavra += caixinha.textContent
-            })
+    const letras = getLetrasAtuais()
+
+    if(posicaoAtual < letras.length){
+        for(let i = posicaoAtual; i > -1; i--){
+            letras[i].textContent = ''
             posicaoAtual = 0
-            linhaAtual++
-            console.log(palavra)
         }
-  //}
-    
+        alert('Tem que conter 5 letras')
+        return
+    }
+
+    letras.forEach(caixinha => {
+        palavradoJogador += caixinha.textContent.toLowerCase()
+    })
+    console.log(palavradoJogador)
+
+    if(linhaAtual < linhas.length - 1){
+        linhaAtual++
+        posicaoAtual = 0
+    }
 }
 
 //funcao que adiciona as letras
 function addLetras(tecla){
+    const letras = getLetrasAtuais()
     if(/^[a-z]$/i.test(tecla) && posicaoAtual < letras.length){
         letras[posicaoAtual].textContent = tecla.toUpperCase()
         posicaoAtual++
@@ -63,20 +62,19 @@ document.addEventListener('keydown', (event) => {
             deleteLetras()
             break
         case 'Enter':
+            event.preventDefault()
             capturarLetras()
+            let palavraJogada = palavradoJogador
+            if(palavraJogada.includes(Modulopalavras)){
+                console.log('tem')
+            }else{
+                console.log('Nao tem')
+            }
+            palavradoJogador = ''
             break
         default:
             addLetras(tecla)
             
     }
-    // if(event.key === 'Backspace'){
-    //     event.preventDefault()
-    //     deleteLetras()
-    // }else{
-    //     addLetras(tecla)
-    // }
-    // if(event.key === 'Enter'){
-    //     capturarLetras()
-        
-    // }
  })
+
