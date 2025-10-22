@@ -1,3 +1,21 @@
+@media screen and (max-width: 780px) {
+  .container {
+    gap: 2px !important;/* espaço entre as linhas */
+  }
+
+  .linha{
+    gap: 0px !important;/* espaço entre as caixinhas */
+  }
+
+  .letter{
+    width: 51px !important;
+    height: 51px !important;
+  }
+  
+  body{
+    padding-top: 90px !important;
+  }
+}
 
 
 body{

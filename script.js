@@ -33,6 +33,32 @@ class jogo{
             letras[this.posicaoAtual].textContent = ''
         }
     }
+
+    capturarLetras(){
+        const letras = this.getLetrasAtuais()
+
+        if(this.posicaoAtual < letras.length){
+            for(let i = this.posicaoAtual; i >= 0; i--){
+                letras[i].textContent = ''
+            }
+            this.posicaoAtual = 0
+            alert('Tem que conter 5 letras')
+            return
+        }
+
+        letras.forEach(box => {
+            this.palavraJogada += box.textContent.toLowerCase()
+        })
+        console.log('Palavra jogada: ',this.palavraJogada)
+
+        if(this.linhaAtual < this.linhas.length){
+            this.linhaAtual++
+            this.posicaoAtual = 0
+        }
+    }
+
+
+
 }
 
 const jogo1 = new jogo()
@@ -40,101 +66,22 @@ const jogo1 = new jogo()
 document.addEventListener('keydown', (event) => {
     const tecla = event.key.toLowerCase()
 
-    if(event.key === 'Backspace'){
-        jogo1.deleteLetras()
-    }else{
-        jogo1.addLetra(tecla)
-    }
-})
-
-
-
-
-
-/*
-//funcao que adiciona as letras
-function addLetras(tecla){
-    const letras = getLetrasAtuais()
-    if(/^[a-z]$/i.test(tecla) && posicaoAtual < letras.length){
-        letras[posicaoAtual].textContent = tecla.toUpperCase()
-        posicaoAtual++
-    }
-}
-let posicaoAtual = 0
-let linhaAtual = 0
-const linhas = document.querySelectorAll('.linha')
-
-function getLetrasAtuais(){
-    return linhas[linhaAtual].querySelectorAll('.letter')
-}
-
-//funcao que apaga as letras
-function deleteLetras(){
-    const letras = getLetrasAtuais()
-    if(posicaoAtual > 0){
-        posicaoAtual--
-        letras[posicaoAtual].textContent = ''
-    }
-}
-
-let palavradoJogador = ''
-
-//funcao que pega as letras
-function capturarLetras(){
-    const letras = getLetrasAtuais()
-
-    if(posicaoAtual < letras.length){
-        for(let i = posicaoAtual; i > -1; i--){
-            letras[i].textContent = ''
-            posicaoAtual = 0
-        }
-        alert('Tem que conter 5 letras')
-        return
-    }
-
-    letras.forEach(caixinha => {
-        palavradoJogador += caixinha.textContent.toLowerCase()
-    })
-    console.log(palavradoJogador)
-
-    if(linhaAtual < linhas.length - 1){
-        linhaAtual++
-        posicaoAtual = 0
-    }
-}
-
-//funcao que adiciona as letras
-function addLetras(tecla){
-    const letras = getLetrasAtuais()
-    if(/^[a-z]$/i.test(tecla) && posicaoAtual < letras.length){
-        letras[posicaoAtual].textContent = tecla.toUpperCase()
-        posicaoAtual++
-    }
-}
-
-//adiciona um "ouvinte" ao teclado para qualquer evento de tecla
-document.addEventListener('keydown', (event) => {
-    const tecla = event.key.toLowerCase()
-
     switch(event.key){
         case 'Backspace':
             event.preventDefault()
-            deleteLetras()
+            jogo1.deleteLetras()
             break
         case 'Enter':
-            event.preventDefault()
-            capturarLetras()
-            let palavraJogada = palavradoJogador
-            if(Modulopalavras.includes(palavraJogada)){
+            jogo1.capturarLetras()
+            if(Modulopalavras.includes(jogo1.palavraJogada)){
                 console.log('tem')
             }else{
                 console.log('Nao tem')
             }
-            palavradoJogador = ''
+            jogo1.palavraJogada = ''
             break
         default:
-            addLetras(tecla)
+            jogo1.addLetra(tecla)
             
     }
 })
-*/
