@@ -10,11 +10,28 @@ class jogo{
         this.indiceClicado = 0
 
         this.verificarCaixinha()
+
+        this.getLetrasAtuais()[0].classList.add('ativo')
     }
 
     //Metodo que pega sempre a linha atual em que esta o jogador
     getLetrasAtuais(){
         return this.linhas[this.linhaAtual].querySelectorAll('.letter')
+    }
+    
+    verificarCaixinha(){
+        const letras = this.getLetrasAtuais()
+        
+        letras.forEach((box, index) => {
+            box.addEventListener('click', () => {
+                letras.forEach(b => b.classList.remove('ativo'))
+                console.log('Box clicada: ', index)
+                this.indiceClicado = index          
+                this.posicaoAtual = this.indiceClicado
+                box.classList.add('ativo')
+                console.log('A posicao atual é', this.indiceClicado)
+            })
+        })
     }
 
     //Metodo de adicionar letra as celulas
@@ -25,15 +42,19 @@ class jogo{
             letras[this.posicaoAtual].textContent = tecla.toUpperCase()
             this.posicaoAtual++
         }
+
+        
     }
+
 
     //Metodo de apagar as letras das celulas
     deleteLetras(){
         const letras = this.getLetrasAtuais()
 
-        if(this.posicaoAtual > 0){
+        if(this.posicaoAtual >= 0){
             this.posicaoAtual--
             letras[this.posicaoAtual].textContent = ''
+            
         }
     }
 
@@ -58,23 +79,7 @@ class jogo{
             this.linhaAtual++
             this.posicaoAtual = 0
         }
-    }
-
-    verificarCaixinha(){
-        const letras = this.getLetrasAtuais()
-
-        letras.forEach((box, index) => {
-            box.addEventListener('click', () => {
-                letras.forEach(b => b.classList.remove('ativo'))
-                console.log('Box clicada: ', index)
-                this.indiceClicado = index          
-                this.posicaoAtual = this.indiceClicado
-                box.classList.add('ativo')
-                console.log('A posicao atual é', this.posicaoAtual)
-            })
-        })
-    }
-
+    }   
 }
 
 const game = new jogo()
@@ -100,6 +105,7 @@ document.addEventListener('keydown', (event) => {
         
         case 'click':
             game.verificarCaixinha()
+            game.deleteLetras()
             break
         default:
             game.addLetra(tecla)
