@@ -19,12 +19,13 @@
 
 
 body{
-    padding-top: 150px;
-    max-height: 100%;
-    background-color: #3e164a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: sans-serif;
+  padding-top: 95px;
+  max-height: 100%;
+  background-color: #3e164a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 header > nav{
@@ -32,29 +33,23 @@ header > nav{
     justify-content: center;
     align-items: center;
     color: white;
-    font-family: 'Mitr', sans-serif;
     font-weight: 600;
     font-size: 200%;
     position: fixed;
     top: 0;
     left: 0;
     height: 100px;
-   
     width: 100%;
 }
-.container {
 
+.container {
   display: flex;
   flex-direction: column; /* empilha as linhas verticalmente */
-  align-items: center;    /* centraliza horizontalmente */
-  gap: 10px;              /* espaço entre as linhas */
 }
 
 .linha {
-  display: flex;       /* coloca as divs lado a lado */
-  gap: 1px;           /* espaço entre as caixinhas */
-  justify-content: center; /* centraliza a linha na tela */
-  margin-bottom: 10px;     /* espaço entre linhas */
+  display: flex;/* coloca as divs lado a lado */
+  margin-bottom: 2px;/* espaço entre linhas */
 }
 /*#502834*/
 
@@ -67,7 +62,7 @@ header > nav{
     background-color: transparent;
     border: 2px solid #200b26;
     border-radius: 10px;
-    margin-left: 5px;
+    margin-left: 2px;
     font-size: 2rem;
     display: flex;
     justify-content: center;
