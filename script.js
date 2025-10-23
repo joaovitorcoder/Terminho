@@ -7,6 +7,9 @@ class jogo{
         this.linhaAtual = 0
         this.palavraJogada = ''
         this.linhas = document.querySelectorAll('.linha')
+        this.indiceClicado = 0
+
+        this.verificarCaixinha()
     }
 
     //Metodo que pega sempre a linha atual em que esta o jogador
@@ -57,7 +60,20 @@ class jogo{
         }
     }
 
+    verificarCaixinha(){
+        const letras = this.getLetrasAtuais()
 
+        letras.forEach((box, index) => {
+            box.addEventListener('click', () => {
+                letras.forEach(b => b.classList.remove('ativo'))
+                console.log('Box clicada: ', index)
+                this.indiceClicado = index          
+                this.posicaoAtual = this.indiceClicado
+                box.classList.add('ativo')
+                console.log('A posicao atual é', this.posicaoAtual)
+            })
+        })
+    }
 
 }
 
@@ -80,6 +96,10 @@ document.addEventListener('keydown', (event) => {
                 console.log('Nao tem')
             }
             game.palavraJogada = ''
+            break
+        
+        case 'click':
+            game.verificarCaixinha()
             break
         default:
             game.addLetra(tecla)

@@ -70,6 +70,9 @@ header > nav{
     align-items: center;
     color: white;
 }
+.letter.ativo {
+  border-color: #c2b114; /* amarelo destacado */
+}
 
 .keyboard{
   position: fixed;
@@ -81,5 +84,5 @@ header > nav{
 
 .keyboard > button{
   width: 100px;
-  height: 100px;
+  height: 100px;  
 }
