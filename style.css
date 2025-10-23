@@ -51,6 +51,7 @@ header > nav{
   display: flex;/* coloca as divs lado a lado */
   margin-bottom: 2px;/* espaço entre linhas */
 }
+
 /*#502834*/
 
 .letter{
@@ -68,4 +69,17 @@ header > nav{
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.keyboard{
+  position: fixed;
+  background-color: blue;
+  height: 182.4px;
+  width: 634.4px;
+  bottom: 5px;
+}
+
+.keyboard > button{
+  width: 100px;
+  height: 100px;
 }

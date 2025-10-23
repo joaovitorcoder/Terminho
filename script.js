@@ -61,7 +61,8 @@ class jogo{
 
 }
 
-const jogo1 = new jogo()
+const game = new jogo()
+window.game = game
 
 document.addEventListener('keydown', (event) => {
     const tecla = event.key.toLowerCase()
@@ -69,19 +70,19 @@ document.addEventListener('keydown', (event) => {
     switch(event.key){
         case 'Backspace':
             event.preventDefault()
-            jogo1.deleteLetras()
+            game.deleteLetras()
             break
         case 'Enter':
-            jogo1.capturarLetras()
-            if(Modulopalavras.includes(jogo1.palavraJogada)){
+            game.capturarLetras()
+            if(Modulopalavras.includes(game.palavraJogada)){
                 console.log('tem')
             }else{
                 console.log('Nao tem')
             }
-            jogo1.palavraJogada = ''
+            game.palavraJogada = ''
             break
         default:
-            jogo1.addLetra(tecla)
+            game.addLetra(tecla)
             
     }
 })
