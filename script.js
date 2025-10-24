@@ -11,21 +11,21 @@ class jogo{
 
         this.verificarCaixinha()
 
-        this.getLetrasAtuais()[0].classList.add('ativo')
+        this.getLetrasAtuais()[this.posicaoAtual].classList.add('ativo')
     }
 
     //Metodo que pega sempre a linha atual em que esta o jogador
     getLetrasAtuais(){
         return this.linhas[this.linhaAtual].querySelectorAll('.letter')
     }
-    
+
     verificarCaixinha(){
         const letras = this.getLetrasAtuais()
         
         letras.forEach((box, index) => {
             box.addEventListener('click', () => {
                 letras.forEach(b => b.classList.remove('ativo'))
-                console.log('Box clicada: ', index)
+                console.log('box clicada: ', index)
                 this.indiceClicado = index          
                 this.posicaoAtual = this.indiceClicado
                 box.classList.add('ativo')
@@ -33,6 +33,39 @@ class jogo{
             })
         })
     }
+    
+    capturarLetras(){
+        const letras = this.getLetrasAtuais()
+        
+        if(this.posicaoAtual < letras.length){
+            for(let i = this.posicaoAtual; i >= 0; i--){
+                letras[i].textContent = ''
+            }
+
+            letras[this.posicaoAtual].classList.remove('ativo')
+            this.posicaoAtual = 0
+            letras[this.posicaoAtual].classList.add('ativo')
+            alert('Tem que conter 5 letras')
+            return
+        }
+
+        this.getLetrasAtuais()[this.posicaoAtual - 1].classList.remove('ativo')
+
+        letras.forEach(box => {
+            this.palavraJogada += box.textContent.toLowerCase()
+        })
+        console.log('Palavra jogada: ',this.palavraJogada)
+
+        if(this.linhaAtual < this.linhas.length){
+            this.linhaAtual++
+            this.posicaoAtual = 0
+            
+        }
+
+        this.getLetrasAtuais()[this.posicaoAtual].classList.add('ativo')
+        
+    }   
+    
 
     //Metodo de adicionar letra as celulas
     addLetra(tecla){
@@ -43,43 +76,29 @@ class jogo{
             this.posicaoAtual++
         }
 
-        
+        letras[this.posicaoAtual].classList.add('ativo')
+        letras[this.posicaoAtual - 1].classList.remove('ativo')
+
     }
-
-
+    
+    
     //Metodo de apagar as letras das celulas
     deleteLetras(){
         const letras = this.getLetrasAtuais()
-
-        if(this.posicaoAtual >= 0){
+        
+        if(this.indiceClicado != 0){
+            letras[this.posicaoAtual].textContent = ''
+            this.posicaoAtual--
+        }else if(this.posicaoAtual != 0){
             this.posicaoAtual--
             letras[this.posicaoAtual].textContent = ''
-            
         }
+
+        letras[this.posicaoAtual].classList.add('ativo')
+        letras[this.posicaoAtual + 1].classList.remove('ativo')
     }
+    
 
-    capturarLetras(){
-        const letras = this.getLetrasAtuais()
-
-        if(this.posicaoAtual < letras.length){
-            for(let i = this.posicaoAtual; i >= 0; i--){
-                letras[i].textContent = ''
-            }
-            this.posicaoAtual = 0
-            alert('Tem que conter 5 letras')
-            return
-        }
-
-        letras.forEach(box => {
-            this.palavraJogada += box.textContent.toLowerCase()
-        })
-        console.log('Palavra jogada: ',this.palavraJogada)
-
-        if(this.linhaAtual < this.linhas.length){
-            this.linhaAtual++
-            this.posicaoAtual = 0
-        }
-    }   
 }
 
 const game = new jogo()

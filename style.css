@@ -80,6 +80,7 @@ header > nav{
   height: 182.4px;
   width: 634.4px;
   bottom: 5px;
+  display: none;
 }
 
 .keyboard > button{
